@@ -1,0 +1,13 @@
+train: C:/Users/oreos/Desktop/Novapasta/train/images
+val: C:/Users/oreos/Desktop/Novapasta/valid/images
+test: C:/Users/oreos/Desktop/Novapasta/test/images
+
+nc: 4
+names: ['coin', 'star', 'tool', 'toolWstar']
+
+roboflow:
+  workspace: foe-test
+  project: foe-bot-ciwtw
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/foe-test/foe-bot-ciwtw/dataset/1
