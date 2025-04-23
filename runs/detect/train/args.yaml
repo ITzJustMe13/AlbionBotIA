@@ -2,7 +2,7 @@ task: detect
 mode: train
 model: yolov8m.pt
 data: ./data.yaml
-epochs: 100
+epochs: 20
 time: null
 patience: 100
 batch: 16
@@ -10,7 +10,7 @@ imgsz: 640
 save: true
 save_period: -1
 cache: false
-device: mps
+device: cpu
 workers: 8
 project: null
 name: train
@@ -99,7 +99,6 @@ copy_paste: 0.0
 copy_paste_mode: flip
 auto_augment: randaugment
 erasing: 0.4
-crop_fraction: 1.0
 cfg: null
 tracker: botsort.yaml
-save_dir: runs\detect\train
+save_dir: C:\Users\Francisco\Desktop\AlbionBotIA\runs\detect\train
