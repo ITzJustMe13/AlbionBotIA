@@ -15,8 +15,18 @@ clicker_ativo = False
 
 print("Pressiona 's' para iniciar, 'e' para parar, 'q' para sair.")
 
+def recurso_presente(img):
+    results = model.predict(img)
+    for result in results:
+        for box in result.boxes:
+            cls = int(box.cls[0])
+            conf = float(box.conf[0])
+            if conf > 0.8 and cls == 1:
+                return True
+    return False
+
 while True:
-    # Teclas para controlo
+
     if keyboard.is_pressed("s"):
         clicker_ativo = True
         print("[Clicker Ativado]")
@@ -34,7 +44,7 @@ while True:
     img = np.array(screenshot)
     frame = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
 
-    results = model(frame, verbose=False)
+    results = model.predict(frame)
 
     for result in results:
         for box in result.boxes:
@@ -44,18 +54,39 @@ while True:
             cx = (x1 + x2) // 2
             cy = (y1 + y2) // 2
 
-            # Só atua se o modo estiver ativo
-            if clicker_ativo and conf > 0.7 and cls == 1:
+            if clicker_ativo and conf > 0.8 and cls == 1:
                 print(f"Classe: {cls} | Conf: {conf:.2f} | Click: ({cx}, {cy})")
                 pyautogui.moveTo(cx, cy)
                 pyautogui.click()
-                time.sleep(3.0)
 
-    # Mostrar janela com deteções
-    annotated = results[0].plot()
-    cv2.imshow("Deteção em tempo real", annotated)
+                start_time = time.time()
 
-    if cv2.waitKey(1) == ord("q"):  # redundante, mas mantém-se
-        break
+                # Verificação do recurso antes de entrar no loop de espera
+                screenshot_check = sct.grab(monitor)
+                img_check = np.array(screenshot_check)
+                frame_check = cv2.cvtColor(img_check, cv2.COLOR_BGRA2BGR)
+
+                # Se o recurso não está presente, sai imediatamente
+                if not recurso_presente(frame_check):
+                    print("Resource collected.")
+                    break
+
+                # Se o recurso está presente, começa a esperar no loop com tempo máximo
+                while True:
+                    time.sleep(0.5)
+                    screenshot_check = sct.grab(monitor)
+                    img_check = np.array(screenshot_check)
+                    frame_check = cv2.cvtColor(img_check, cv2.COLOR_BGRA2BGR)
+
+                    if not recurso_presente(frame_check):
+                        print("Resource collected.")
+                        break
+
+                    if time.time() - start_time > 8:
+                        print("Max time reached.")
+                        break
+
+        # annotated = results[0].plot()
+        # cv2.imshow("Deteção em tempo real", annotated)
 
 cv2.destroyAllWindows()
