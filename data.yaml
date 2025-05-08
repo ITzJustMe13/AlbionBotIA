@@ -1,13 +1,13 @@
-train: C:/Users/oreos/Desktop/Novapasta/train/images
-val: C:/Users/oreos/Desktop/Novapasta/valid/images
-test: C:/Users/oreos/Desktop/Novapasta/test/images
+train: C:/Users/oreos/PycharmProjects/AlbionBotIA/train/images
+val: C:/Users/oreos/PycharmProjects/AlbionBotIA/valid/images
+test: C:/Users/oreos/PycharmProjects/AlbionBotIA/test/images
 
-nc: 4
-names: ['coin', 'star', 'tool', 'toolWstar']
+nc: 2
+names: ['broken stone', 'stone']
 
 roboflow:
-  workspace: foe-test
-  project: foe-bot-ciwtw
-  version: 1
+  workspace: albiononline-ia
+  project: albion-bot-e1ypw
+  version: 4
   license: CC BY 4.0
-  url: https://universe.roboflow.com/foe-test/foe-bot-ciwtw/dataset/1
+  url: https://universe.roboflow.com/albiononline-ia/albion-bot-e1ypw/dataset/4
