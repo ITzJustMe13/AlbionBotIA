@@ -1,13 +1,13 @@
-train: C:/Users/oreos/PycharmProjects/AlbionBotIA/train/images
-val: C:/Users/oreos/PycharmProjects/AlbionBotIA/valid/images
-test: C:/Users/oreos/PycharmProjects/AlbionBotIA/test/images
+train: ../train/images
+val: ../valid/images
+test: ../test/images
 
-nc: 2
-names: ['broken stone', 'stone']
+nc: 8
+names: ['broken stone', 'copper', 'cotton', 'deer_alive', 'deer_dead', 'harvesting', 'stone', 'targeting']
 
 roboflow:
   workspace: albiononline-ia
   project: albion-bot-e1ypw
-  version: 4
+  version: 5
   license: CC BY 4.0
-  url: https://universe.roboflow.com/albiononline-ia/albion-bot-e1ypw/dataset/4
+  url: https://universe.roboflow.com/albiononline-ia/albion-bot-e1ypw/dataset/5
