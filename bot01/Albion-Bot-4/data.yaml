@@ -1,0 +1,13 @@
+names:
+- broken stone
+- stone
+nc: 2
+roboflow:
+  license: CC BY 4.0
+  project: albion-bot-e1ypw
+  url: https://universe.roboflow.com/albiononline-ia/albion-bot-e1ypw/dataset/4
+  version: 4
+  workspace: albiononline-ia
+test: ../test/images
+train: ../train/images
+val: ../valid/images
